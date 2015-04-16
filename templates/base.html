@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<meta charset='utf-8'>
+
+
+<html>
+
+<head>
+    <title>Sam's Blog</title>
+{% load staticfiles %}
+<link href="{% static 'CSS\style.css' %}" rel="stylesheet" media='screen' >
+
+    
+</head>
+
+    
+    
+    
+    
+<body>
+
+<header>
+        <div id='search_div'>
+        <form>
+            Search:
+            <input type='search'>
+            <select>
+                <option>by all</option>
+                <option>by authors</option>
+                <option>by themes</option>       
+            </select>
+        </form>
+        </div>
+</header>
+<br>
+<!-- Для боковой панели, мне нужно запиилить чтоб если 
+пользователь не авторизовался висела панель авторизации,
+а дальше проверка которая касается правой панели"-->
+<!--{# if тут реализовать логику проверки аутентификации #}-->
+<aside>
+    <div id='login_div'>
+        <form action="" method="POST">
+            Username:<input type="text">
+            <br>
+            Password:<input type="password">
+            <br>
+            <input type='submit' value='Log in'>
+            Remember me <input type="checkbox">
+            <br>
+            <a href="{% url 'blog.viwes.reg' %}">Registration</a>
+        </form>
+        <br>
+    </div>
+
+</aside>
+<!--{#endif#}-->
+<section>
+    {%block content%}{%endblock%}
+         
+</section>
+<footer>
+    <p>by Sam</p>
+</footer>
+</body>    
+</html>

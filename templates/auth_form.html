@@ -1,0 +1,17 @@
+{%extends 'base.html'%}
+
+{%block content%}
+<h1>Who are you?</h1>
+{{test}}
+<hr>
+<form action='' method="POST">
+    <table>
+        {{reg_form}}
+        <tr>
+            <th></th>
+            <th align='right'><input type="submit" value="Submit"></th>
+        </tr>
+    </table>
+    <br>
+</form>
+{%endblock%}
