@@ -8,6 +8,7 @@ def home_page(request):
     return render_to_response('base.html',)
 
 #Обработка формы регистрации
+#WTF!!!!!!!!!!!!!!!!11111111111111111
 def reg(request):
     reg_form=RegForm()
     if request.method=='POST':
