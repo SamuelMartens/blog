@@ -52,4 +52,6 @@ class LoginForm(forms.Form):
         user=auth.authenticate(username=username,password=password)
         if user is not None and user.is_active:
             auth.login(request, user)
+        if request.POST.get('remember_me',None)!=None: request.session.set_expiry(432000) #Кука будет храниться 5 дней
+        else: request.session.set_expiry(0)
         return user

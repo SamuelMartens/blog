@@ -26,6 +26,11 @@ TEMPLATE_DEBUG = True
 
 TEMPLATE_DIRS=[os.path.join(BASE_DIR,'templates')]
 
+TEMPLATE_CONTEXT_PROCESSORS=(
+    'blog.context_processors.log_form_proc',
+    'django.contrib.auth.context_processors.auth'
+)
+
 ALLOWED_HOSTS = []
 
 

@@ -34,31 +34,40 @@
 <br>
 
 <aside>
-<!-- Для боковой панели, мне нужно запиилить чтоб если 
-пользователь не авторизовался висела панель авторизации,
-а дальше проверка которая касается правой панели"-->
-<!--{# if тут реализовать логику проверки аутентификации #}-->
     <div id='login_div'>
+{% if not user.is_authenticated %}
+
         <form action="{% url 'home_page' %}" method="POST">
             Username:
             {{log_form.username}}
             Password:
             {{log_form.password}}
             <input type='submit' value='Log in' name="log_form">
-            Remember me <input type="checkbox">
+            Remember me <input type="checkbox" name="remember_me">
             <br>
             <a href="{% url 'blog.viwes.reg' %}">Registration</a>
         </form>
         <br>
-    </div>
-
-<!--Тут будет блок верстки, если ползун аутентифицировался-->
-<!--{#else#}-->
-<!--{#endif#}-->
+  
+{%else%}
+ {{user.get_full_name}}
+        <hr>
+    <ul>
+        <li>My posts</li>
+        <li>My masseges</li>
+    </ul>
+        <hr>
+        <form action="{% url 'home_page' %}" method="GET">
+            <input type="submit" value="Log out" name="log_out_form">
+        </form>
+        
+{%endif%}
+        </div>
 </aside>
 
 <section>
-    <h2>{{option_mes|safe}}</h2>
+    {{option_mes|safe}}
+    <hr>
     {%block content%}{%endblock%}
          
 </section>
