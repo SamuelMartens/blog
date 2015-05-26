@@ -1,0 +1,28 @@
+{%extends 'base.html'%}
+{% load staticfiles%}
+
+{%block content%}
+<a href="{% url 'post_cre' %}" align='right' id='create_post'>Create new post</a>
+<br>
+<table bprder='0px' width='900' id='my_posts' cellspacing='0' cellpadding='3px'>
+    <tr bgcolor='#008AE6' align='left'>
+        <th>Post theme</th>
+        <th>Pub. date</th>
+        <th></th>
+        <th></th>
+    </tr>
+    {% for post in author_posts %}
+    <tr align='left' class=my_post_rows>
+        <th ><a href="{% url 'post_view' post.id %}">{{post.theme}}</a></th>
+        <th>{{post.pub_date}}</th>
+        <th>{{post.comments_num}} comment(s)</th>
+        <th><a href="{% url 'edit_post' post.id %}" title="Edit post"><img src="{% static 'CSS\image\edit_icon.png' %}" alt="Edit post" width="20px"></a>
+            <a href="{% url 'delete_post' post.id %}" title='Delete post'><img src="{% static 'CSS\image\delete_icon.jpg' %}" alt='Delete post' width='20px'></a></th>
+    </tr>
+    {%endfor%}
+</table>
+
+{%endblock%}
+
+{%block right_aside%}
+{%endblock%}

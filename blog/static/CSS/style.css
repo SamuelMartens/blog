@@ -1,28 +1,41 @@
 
-        header {
+header {
              height:74px;
              width:100%;
-             background: url(image/header_image.png);
+             background: url(image/header_image.jpg);
              background-size: cover;
              position: relative;
              -webkit-border-radius:10px;
              -moz-border-radius:10px;
+             border: 1px solid black;
         }
  div#search_div {
                 position: absolute;
                 bottom:5px;
-                color:white;
                 right: 10px;
  }
-    aside {
+aside {
              height:180px;
              width:200px;
-             background-color: forestgreen;
+             background: url(image/header_image.jpg);
              color: azure;
              position: relative;
              -webkit-border-radius:10px;
              -moz-border-radius:10px;
+            border: 1px solid black;
         }
+div#right_aside{
+    width:10%;
+    height: auto;
+    position: absolute;
+    background-color: white;
+    top:100px;
+    left: 1180px;
+    padding: 4px;
+    border: 1px solid black;
+    text-align: left;
+   
+}
  div#login_div {
                 position: absolute;
                 bottom:15px;
@@ -31,7 +44,6 @@
         }
 
 section {
-        background-color:darkseagreen;   
         height:auto;
          width:950px;
          -webkit-border-radius:10px;
@@ -39,5 +51,131 @@ section {
          position:absolute; 
          left:220px;
          top:100px;
+         box-shadow: 0px 0px 4px 4px darkorange;
          
      }
+
+div#post_cre {
+    position: relative;
+    width: 930px;
+    top: 3px;
+    font-size: x-large;
+    
+    
+}
+    
+#id_theme {
+    width: 780px;
+    font-size: large;
+    font-weight: bold;
+    font-family: 'Comic Sans MS';
+}
+
+a#home_ref{
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background-color: #B0B5B9;
+    -webkit-border-radius:4px;
+    -moz-border-radius:4px;
+}
+
+a#create_post{
+    position:absolute;
+    right: 50px;
+}
+div#contentblock{
+    position:relative;
+    left: 20px;
+    bottom: 10px;
+    width: 930px;
+    
+}
+tr.my_post_rows{
+    background-color:white;
+    font-family: 'Comic Sans MS';
+    font-size: small;
+}
+tr.my_post_rows:hover{
+    background-color:yellow; 
+    font-family: 'Comic Sans MS';
+    font-size: small;
+    box-shadow: 5px 0px 20px black inset;
+    transition: .2s linear;
+    
+}
+
+table#my_posts{
+    border: 1px solid black;
+    padding: 0px;
+    -webkit-border-radius:8px;
+    -moz-border-radius:8px;
+    border-radius: 8px
+    
+}
+
+div.post_view{
+    width: 900px;
+    background-color: #D7EED9;
+    padding: 7px;
+    border: 2px solid black;
+    -webkit-border-radius:10px;
+    -moz-border-radius:10px;
+    word-wrap: break-word;
+}
+.errorlist li{
+    font-size:medium;
+    color: red;
+}
+p#tips_visible,a,a:visited{
+    text-decoration: none;
+    color:#0F5787;
+    
+}
+a:hover{
+    font-weight: bold;
+}
+div#option_mes{
+    font-style: italic;
+}
+div#view_range{
+    position: relative;
+    left: 400px;
+    width: 100px;
+}
+body{
+    background:url(image/background.png);
+    background-repeat:space;
+    background-attachment: fixed;
+    
+}
+form#comment_form{
+    padding: 7px;
+    border: 1px solid black;
+    -webkit-border-radius:10px;
+    -moz-border-radius:10px;
+    background-color: white;
+    width: 900px;
+    
+}
+div.comment_show{
+    padding: 7px;
+    border: 1px solid black;
+    -webkit-border-radius:10px;
+    -moz-border-radius:10px;
+    background-color:darkgray;
+    width: 900px;
+    word-wrap: break-word;
+}
+input.delete_comment{
+    position: absolute;
+    left:890px;
+
+}
+ul.non_market_list{
+    list-style-image: none;
+    list-style-type: none;
+}
+p#tips_visible{
+    cursor: pointer;
+}

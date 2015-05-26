@@ -43,6 +43,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'content',
+    'blog_tags',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -65,8 +67,12 @@ WSGI_APPLICATION = 'blog.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME':'blog',
+        'USER':'postgres',
+        'PASSWORD':'1',
+        'HOST':'',
+        'PORT':'5432',
     }
 }
 
@@ -89,4 +95,11 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS=(os.path.join(os.path.dirname(__file__),'static'),)
+
+#Uploaded media
+
+MEDIA_ROOT=os.path.join(os.path.dirname(__file__),'media')
+MEDIA_URL='/media/'
+
+FILE_CHARSET='UTF-8'
 

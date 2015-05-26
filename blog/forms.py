@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib import auth
+from content.models import UserImage
 
 class RegForm(forms.Form):
     username=forms.CharField(max_length=20)
@@ -9,6 +10,7 @@ class RegForm(forms.Form):
     e_mail=forms.EmailField(required=False, label='E-mail')
     password=forms.CharField(widget=forms.PasswordInput(),max_length=4)
     r_password=forms.CharField(label='Repeat password:',min_length=4, widget=forms.PasswordInput())
+    avatar=forms.FileField()
 
 #Проверка идентичности введенных паролей
     def clean_r_password(self):
@@ -30,14 +32,16 @@ class RegForm(forms.Form):
 
 
 
-
-    def create_user(self):
+    def create_user(self,image):
         cleaned_data=self.clean()
         user=User.objects.create_user(username=cleaned_data['username'],
                                     first_name=cleaned_data['first_name'],
                                     last_name=cleaned_data['last_name'],
                                     password=cleaned_data['password'])
         user.save()
+        UserImage.objects.create(user_to=User.objects.get(username=cleaned_data['username']),
+                                        image=image,)
+
         return user
 
 

@@ -1,0 +1,28 @@
+{%extends 'base.html'%}
+
+{%block content%}
+    <b><i>Username:</i>
+    {{viewed_user.username}}</b>
+    <hr>
+    <i>First name:</i>
+    {{viewed_user.first_name}}<br>
+    <i>Last name:</i>
+    {{viewed_user.last_name}}
+    <hr>
+    <i>Email:</i>
+    {{viewed_user.email}}
+    <br>
+    <i>Date of registration:</i>
+    {{viewed_user.date_joined}}
+    <hr>
+    <i>User posts:</i> 
+    <br>
+    <ul>
+    {% for post in viewed_user_posts%}
+        <li><a href="{% url 'post_view' post.id %}">{{post.theme}}</a></li>
+    {%endfor%}
+    </ul>
+
+
+
+{%endblock%}

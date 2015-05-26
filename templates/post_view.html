@@ -1,0 +1,46 @@
+{%extends 'base.html'%}
+{% load allow_edit_cont %}
+{% load staticfiles %}
+
+
+
+{%block content%}
+<div class='post_view'>
+<i>{{post.pub_date}}<br>
+    Author:<b><a href="{% url 'view_user' post.author.id %}">{{post.author}}</a></b> </i>
+
+<h3><u>{{post.theme}}</u></h3>
+
+{{post.post_cont|allow_reg_tags}}
+
+</div>
+<hr>
+{% for comment_show in comments%}
+    <br>
+    <div class="comment_show">
+        <form action="" method="POST">
+            <i>{{comment_show.pub_date}}</i>
+            {% ifequal comment_show.author.id user.id %}
+                <input type="image" src="{% static 'CSS\image\delete_icon.jpg' %}" alt="Delete comment" width="15px"
+                       class="delete_comment" name="delete_comment" title="Delete comment">
+                <input type="hidden" name="delete_comment_id" value="{{comment_show.id}}"> 
+            {% endifequal %}
+            <br>
+            <b>{{comment_show.author}}</b>:
+        </form>
+        <br>    
+        {{comment_show.comm_cont}}
+        
+    </div>
+{% endfor %}
+{% if user.is_authenticated %}
+<br>
+    <form action="" method="POST" id='comment_form'>
+        {{comment.comm_cont.errors}}
+        {{comment.comm_cont}}<br>
+       <input type="submit" value="Submit" name="cre_comm">
+    </form>
+{% endif %}
+<a id="bottom"></a>
+{%endblock%}
+

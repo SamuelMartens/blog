@@ -1,0 +1,30 @@
+{%extends 'base.html'%}
+{% load staticfiles %}
+
+{%block content%}
+<div id='post_cre'>
+<form action="" method="POST">
+   <label>  
+        {{post_cre_form.theme.errors}}
+        Theme:
+        {{post_cre_form.theme}}
+       
+    </label>
+<hr>
+    {{post_cre_form.post_cont.errors}}
+    {{post_cre_form.post_cont}}
+    <br>
+    <input type="submit" name="post_cre_form" value="This post is ready">
+</form>
+</div>
+{%endblock%}
+{%block right_aside%}
+<p id='tips_visible' >Hide tips</p>
+<div id='tips'>
+    Tags you you can use for text format:<br>  
+    &lt;b&gt;<b>Bold</b>&lt;/b&gt;<br>
+    &lt;i&gt;<i>Italic</i>&lt;/i&gt;<br>
+    &lt;u&gt;<u>Underline</u>&lt;/u&gt;<br>
+    &lt;br&gt; - for text brake
+</div>
+{%endblock%}
