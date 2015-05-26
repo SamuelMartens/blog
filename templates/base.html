@@ -5,34 +5,34 @@
 <html>
 
 <head>
-    <title>Sam's Blog</title>
 {% load staticfiles %}
+{% load allow_edit_cont %}
+    <title >Sam's Blog</title>
+
+
 <link href="{% static 'CSS\style.css' %}" rel="stylesheet" media='screen' >
 
     
 </head>
-
-    
-    
-    
     
 <body>
 
 <header>
         <div id='search_div'>
-        <form>
+        <form action="{% url 'home_page' %}" method="GET">
             Search:
-            <input type='search'>
-            <select>
-                <option>by all</option>
-                <option>by authors</option>
-                <option>by themes</option>       
+            <input type='search' name="search_input">
+            <select name='search_by'>
+                <option value="all">by all</option>
+                <option value="author">by authors</option>
+                <option value="theme">by themes</option>       
             </select>
+            <input type="submit" value="Search" name='search'>
         </form>
         </div>
 </header>
 <br>
-
+    
 <aside>
     <div id='login_div'>
 {% if not user.is_authenticated %}
@@ -40,12 +40,14 @@
         <form action="{% url 'home_page' %}" method="POST">
             Username:
             {{log_form.username}}
-            Password:
+            Password:</i>
             {{log_form.password}}
             <input type='submit' value='Log in' name="log_form">
             Remember me <input type="checkbox" name="remember_me">
             <br>
-            <a href="{% url 'blog.viwes.reg' %}">Registration</a>
+            <a href="{% url 'blog.views.reg' %}">Registration</a>
+            <br>
+            Forgot password?
         </form>
         <br>
   
@@ -53,8 +55,8 @@
  {{user.get_full_name}}
         <hr>
     <ul>
-        <li>My posts</li>
-        <li>My masseges</li>
+        <li class='my_menu'><a href="{% url 'my_posts' %}">My posts</a></li>
+        <li class='my_menu'>My masseges</li>
     </ul>
         <hr>
         <form action="{% url 'home_page' %}" method="GET">
@@ -63,16 +65,55 @@
         
 {%endif%}
         </div>
+    <a id='home_ref' href="{% url 'home_page' %}" title='Go to home page'><img src="{% static 'CSS\image\home_icon.png' %}" alt='Home' width="22" height="22"/></a>
 </aside>
 
 <section>
-    {{option_mes|safe}}
-    <hr>
-    {%block content%}{%endblock%}
+    <br>
+    <div id='contentblock'>
+    <div id='option_mes'>{{option_mes|safe}}</div>
+        <br>
+    {%block content%}
+        {% for post in posts %}
+        <br>
+        <div class="post_view">
+            <i>{{post.pub_date}}<br>
+            Author:<a href="{% url 'view_user' post.author.id %}"><b>{{post.author}}</b></a> </i>
+            <h3><u>{{post.theme}}</u></h3>
+            {{post.post_cont|allow_reg_tags|truncatewords_html:"100"}}
+        </div>
+        <a href="{% url 'post_view' post.id %}">Read this post</a>
+        <br>
+        <hr>
+        {%endfor%}
+        <div id='view_range'>
+            {% for page in view_range%}
+                {% ifequal current_page page %}
+            <a href="{% url 'home_page_view' page %}"><i><u>{{page}}</u></i></a>|
+                {% else %}
+                    <a href="{% url 'home_page_view' page %}"><i>{{page}}</i></a>|
+                {% endifequal %}
+            {%endfor%}
+        </div>
+        
+    {%endblock%}
+    </div>
          
 </section>
+<div id='right_aside'>
+    {%block right_aside%}
+        <table align='left' width='100%'>
+            <tr bgcolor='#008AE6'><th> Show posts: </th></tr>
+            <tr class="my_post_rows"><th> Last 24 hours</th></tr>
+            <tr class="my_post_rows"><th> Last week</th></tr>
+            <tr class="my_post_rows"><th> Last month</th></tr>
+        </table>
+    {%endblock%}
+</div>
 <footer>
     <p>by Sam</p>
 </footer>
+    <script src="{% static 'JavaScript\jquery-2.1.4.min.js'%}" ></script>
+    <script src="{% static 'JavaScript\blog_scripts.js'%}" ></script>
 </body>    
 </html>
