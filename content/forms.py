@@ -7,7 +7,7 @@ class PostCreForm(ModelForm):
         model=Post
         fields=('theme','post_cont')
         widgets={
-            'post_cont':Textarea(attrs={'cols':120,'rows':35}),
+            'post_cont':Textarea(attrs={'cols':110,'rows':35}),
         }
 
 
@@ -27,7 +27,7 @@ class CommentForm(ModelForm):
         model=Comment
         fields=('comm_cont',)
         widgets={
-            'comm_cont':Textarea(attrs={'cols':120,'rows':5}),
+            'comm_cont':Textarea(attrs={'cols':110,'rows':5}),
         }
 
     def create_comm(self,request,id):

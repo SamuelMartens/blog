@@ -1,6 +1,13 @@
 {%extends 'base.html'%}
+{% load staticfiles %}
 
 {%block content%}
+	{%for image in user_images %}
+		{% ifequal image.user_to.id viewed_user.id %}
+			<img src="{{ image.instance.image.url }}" alt='User avatar' width='100'></img>
+			<p>ffff</p>
+		{% endifequal%}
+	{% endfor%}
     <b><i>Username:</i>
     {{viewed_user.username}}</b>
     <hr>
